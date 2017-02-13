@@ -5,5 +5,7 @@
 *~
 *.tmproj
 *.log
+*.sqlite3
 .env
 tmp
+/staticfiles
