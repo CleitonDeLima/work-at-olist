@@ -30,6 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'test_without_migrations',
+    'mptt',
+
+    'channels'
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -1,5 +1,7 @@
-Django
-psycopg2
-prettyconf
-dj-database-url
-djangorestframework
+Django==1.10.5
+djangorestframework==3.5.4
+dj-database-url==0.4.2
+prettyconf==1.2.3
+psycopg2==2.6.2
+django-test-without-migrations==0.4
+django-mptt==0.8.7
