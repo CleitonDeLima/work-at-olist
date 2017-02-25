@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -15,6 +16,6 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.root_nodes()
 
     def retrieve(self, request, *args, **kwargs):
-        instance = Category.objects.get(**kwargs)
+        instance = get_object_or_404(Category, **kwargs)
         serializer = self.get_serializer(instance)
         return Response(serializer.data)

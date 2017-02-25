@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from ..models import Channel, Category
+from channels.models import Channel, Category
 
 
 class ChannelModelTest(TestCase):
