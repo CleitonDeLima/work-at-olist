@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework_recursive',
     'test_without_migrations',
     'mptt',
+    'django_extensions',
 
     'channels'
 ]
