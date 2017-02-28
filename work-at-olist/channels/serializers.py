@@ -5,13 +5,7 @@ from rest_framework_recursive.fields import RecursiveField
 from .models import Channel, Category
 
 
-class ChannelSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Channel
-        fields = ('name', 'url')
-
-
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
+class BaseCategorySerialzer(serializers.ModelSerializer):
     subcategories = serializers.ListSerializer(
         source='children',
         child=RecursiveField(),
@@ -20,4 +14,24 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Category
+        fields = ('name', 'channel', 'subcategories')
+
+
+class CategorySerializer(BaseCategorySerialzer, serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Category
         fields = ('name', 'channel', 'url', 'subcategories')
+
+
+class ChannelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Channel
+        fields = ('name', 'url')
+
+
+class ChannelCategoriesSerializer(serializers.ModelSerializer):
+    categories_tree = serializers.ReadOnlyField(source='categories_recursive')
+
+    class Meta:
+        model = Channel
+        fields = ('name', 'categories_tree')

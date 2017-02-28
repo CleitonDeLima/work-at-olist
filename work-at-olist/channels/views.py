@@ -3,12 +3,24 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from .models import Channel, Category
-from .serializers import ChannelSerializer, CategorySerializer
+from .serializers import ChannelSerializer, CategorySerializer, \
+    ChannelCategoriesSerializer
 
 
 class ChannelViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    list:
+        Returns the list of all channels
+    retrieve:
+        Returns the information channel with its categories
+    """
     serializer_class = ChannelSerializer
     queryset = Channel.objects.all()
+
+    def retrieve(self, request, *args, **kwargs):
+        channel = self.get_object()
+        serializer = ChannelCategoriesSerializer(channel)
+        return Response(serializer.data)
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
