@@ -24,6 +24,12 @@ class ChannelViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    list:
+        Returns the list of all categories and yours childrens
+    retrieve:
+        Returns the information category and your childrens
+    """
     serializer_class = CategorySerializer
     queryset = Category.objects.root_nodes()
 
